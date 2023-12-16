@@ -7,7 +7,6 @@ import connectDB from './src/utils/connectDB.js'
 import userRouters from './src/routes/userRoutes.js'
 import vocabularyRoutes from './src/routes/vocabularyRoutes.js'
 import swaggerSpec from './src/configs/swaggerSpec.js'
-import User from './src/models/user.js'
 const app = express()
 
 dotenv.config() // Set up Global configuration access
@@ -20,17 +19,7 @@ app.use(express.static('public'))
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
 app.use(morgan('dev'))
-app.get('/', (req, res) => {
-  res.json({ message: '/' })
-})
-app.get('/api', (req, res) => {
-  res.json({ message: '/api' })
-})
-app.get('/calldb', (req, res) => {
-  User.find()
-    .then(users => res.json(users))
-    .catch(err => res.status(500).json({ message: err.message }))
-})
+app.get('/', (req, res) => res.json({ message: '/' }))
 app.use('/api/docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec))
 app.use('/api/v1/users', userRouters)
 app.use('/api/v1/vocabularies', vocabularyRoutes)
