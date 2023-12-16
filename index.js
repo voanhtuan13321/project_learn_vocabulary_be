@@ -21,6 +21,12 @@ app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
 app.use(morgan('dev'))
 app.get('/', (req, res) => {
+  res.json({ message: '/' })
+})
+app.get('/api', (req, res) => {
+  res.json({ message: '/api' })
+})
+app.get('/calldb', (req, res) => {
   User.find()
     .then(users => res.json(users))
     .catch(err => res.status(500).json({ message: err.message }))
