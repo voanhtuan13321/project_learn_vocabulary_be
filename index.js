@@ -7,6 +7,7 @@ import connectDB from './src/utils/connectDB.js'
 import userRouters from './src/routes/userRoutes.js'
 import vocabularyRoutes from './src/routes/vocabularyRoutes.js'
 import swaggerSpec from './src/configs/swaggerSpec.js'
+import User from './src/models/user.js'
 const app = express()
 
 dotenv.config() // Set up Global configuration access
