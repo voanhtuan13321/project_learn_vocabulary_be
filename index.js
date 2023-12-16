@@ -3,10 +3,10 @@ import morgan from 'morgan'
 import dotenv from 'dotenv'
 import swaggerUi from 'swagger-ui-express'
 
-import connectDB from './utils/connectDB.js'
-import userRouters from './routes/userRoutes.js'
-import vocabularyRoutes from './routes/vocabularyRoutes.js'
-import swaggerSpec from './configs/swaggerSpec.js'
+import connectDB from './src/utils/connectDB.js'
+import userRouters from './src/routes/userRoutes.js'
+import vocabularyRoutes from './src/routes/vocabularyRoutes.js'
+import swaggerSpec from './src/configs/swaggerSpec.js'
 const app = express()
 
 dotenv.config() // Set up Global configuration access
