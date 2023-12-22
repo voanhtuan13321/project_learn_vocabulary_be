@@ -6,6 +6,36 @@ const route = express.Router()
 
 /**
  * @swagger
+ * /api/v1/users/check-exist/{username}:
+ *   post:
+ *     summary: check exist username
+ *     tags: [Users]
+ *     server: /api/v1/users/check-exist
+ *     parameters:
+ *       - name: username
+ *         in: path
+ *         description: Username
+ *         required: true
+ *         schema:
+ *           type: string
+ *     responses:
+ *       200:
+ *         description: logined
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/Token'
+ *       500:
+ *         description: Some server error
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/ErrorMessage'
+ */
+route.get('/check-exist/:username', userController.hasUsername)
+
+/**
+ * @swagger
  * /api/v1/users/login:
  *   post:
  *     summary: login

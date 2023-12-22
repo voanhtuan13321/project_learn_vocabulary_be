@@ -1,6 +1,13 @@
 import User from '../models/user.js'
 import jwtService from '../services/jwtService.js'
 
+const hasUsername = (req, res) => {
+  const { username } = req.params
+  User.findOne({ username })
+    .then(user => res.json({ isExist: !!user }))
+    .catch(err => res.status(500).json({ message: err.message }))
+}
+
 const getAllUsers = (req, res) => {
   User.find()
     .then(users => res.json(users))
@@ -45,4 +52,11 @@ const deleteUser = (req, res) => {
     .catch(err => res.status(500).json({ message: err.message }))
 }
 
-export default { getAllUsers, login, addUser, updateUser, deleteUser }
+export default {
+  hasUsername,
+  getAllUsers,
+  login,
+  addUser,
+  updateUser,
+  deleteUser,
+}

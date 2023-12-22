@@ -32,11 +32,7 @@ const route = express.Router()
  *             schema:
  *               $ref: '#/components/schemas/ErrorMessage'
  */
-route.get(
-  '/countion/:id',
-  jwtAuthen.authenticateToken,
-  vocabularyController.getCountOfVocabularyByUser,
-)
+route.get('/countion/:id', vocabularyController.getCountOfVocabularyByUser)
 
 /**
  * @swagger
@@ -66,11 +62,7 @@ route.get(
  *             schema:
  *               $ref: '#/components/schemas/ErrorMessage'
  */
-route.get(
-  '/:id',
-  jwtAuthen.authenticateToken,
-  vocabularyController.getAllVocabularyByIdUser,
-)
+route.get('/:id', vocabularyController.getAllVocabularyByIdUser)
 
 /**
  * @swagger
@@ -100,11 +92,7 @@ route.get(
  *             schema:
  *               $ref: '#/components/schemas/ErrorMessage'
  */
-route.get(
-  '/random/:id',
-  jwtAuthen.authenticateToken,
-  vocabularyController.getRandomVocabularyByIdUser,
-)
+route.get('/random/:id', vocabularyController.getRandomVocabularyByIdUser)
 
 /**
  * @swagger

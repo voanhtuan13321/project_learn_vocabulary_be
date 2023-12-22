@@ -13,6 +13,9 @@ const app = express()
 dotenv.config() // Set up Global configuration access
 connectDB.connect() // connect to database
 
+const CSS_URL =
+  'https://cdnjs.cloudflare.com/ajax/libs/swagger-ui/4.1.0/swagger-ui.min.css'
+
 const PORT = process.env.PORT || 3000
 app.listen(PORT, () => console.log(`Running on http://localhost:${PORT}`))
 
@@ -22,6 +25,10 @@ app.use(express.urlencoded({ extended: true }))
 app.use(morgan('dev'))
 app.use(cors())
 app.get('/', (req, res) => res.json({ message: '/' }))
-app.use('/api/docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec))
+app.use(
+  '/api/docs',
+  swaggerUi.serve,
+  swaggerUi.setup(swaggerSpec, { customCssUrl: CSS_URL }),
+)
 app.use('/api/v1/users', userRouters)
 app.use('/api/v1/vocabularies', vocabularyRoutes)
