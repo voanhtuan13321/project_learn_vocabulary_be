@@ -1,8 +1,4 @@
 import swaggerJsdoc from 'swagger-jsdoc'
-import dotenv from 'dotenv'
-
-dotenv.config()
-const PORT = process.env.PORT || 3000
 
 const optionsSwaggerJsdoc = {
   definition: {
@@ -18,10 +14,10 @@ const optionsSwaggerJsdoc = {
         email: 'voanhtuan13321@gmail.com',
       },
     },
-    servers: [{ url: `http://localhost:${PORT}` }],
+    servers: [{ url: `project-learn-vocabulary-be.vercel.app` }],
   },
   apis: ['src/routes/*.js'],
 }
-const swaggerSpec = swaggerJsdoc(optionsSwaggerJsdoc)
 
+const swaggerSpec = swaggerJsdoc(optionsSwaggerJsdoc)
 export default swaggerSpec

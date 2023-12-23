@@ -1,6 +1,13 @@
 import express from 'express'
 import jwtAuthen from '../middlewares/jwtAuthen.js'
-import userController from '../controllers/userController.js'
+import {
+  addUser,
+  deleteUser,
+  getAllUsers,
+  hasUsername,
+  login,
+  updateUser,
+} from '../controllers/userController.js'
 
 const route = express.Router()
 
@@ -32,7 +39,7 @@ const route = express.Router()
  *             schema:
  *               $ref: '#/components/schemas/ErrorMessage'
  */
-route.get('/check-exist/:username', userController.hasUsername)
+route.get('/check-exist/:username', hasUsername)
 
 /**
  * @swagger
@@ -61,7 +68,7 @@ route.get('/check-exist/:username', userController.hasUsername)
  *             schema:
  *               $ref: '#/components/schemas/ErrorMessage'
  */
-route.post('/login', userController.login)
+route.post('/login', login)
 
 /**
  * @swagger
@@ -90,7 +97,7 @@ route.post('/login', userController.login)
  *             schema:
  *               $ref: '#/components/schemas/ErrorMessage'
  */
-route.post('/register', userController.addUser)
+route.post('/register', addUser)
 
 /**
  * @swagger
@@ -113,7 +120,7 @@ route.post('/register', userController.addUser)
  *             schema:
  *               $ref: '#/components/schemas/ErrorMessage'
  */
-route.get('', userController.getAllUsers)
+route.get('', getAllUsers)
 
 /**
  * @swagger
@@ -142,7 +149,7 @@ route.get('', userController.getAllUsers)
  *             schema:
  *               $ref: '#/components/schemas/ErrorMessage'
  */
-route.put('', jwtAuthen.authenticateToken, userController.updateUser)
+route.put('', jwtAuthen.authenticateToken, updateUser)
 
 /**
  * @swagger
@@ -172,6 +179,6 @@ route.put('', jwtAuthen.authenticateToken, userController.updateUser)
  *             schema:
  *               $ref: '#/components/schemas/ErrorMessage'
  */
-route.delete('/:id', jwtAuthen.authenticateToken, userController.deleteUser)
+route.delete('/:id', jwtAuthen.authenticateToken, deleteUser)
 
 export default route

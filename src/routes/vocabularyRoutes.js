@@ -1,6 +1,14 @@
 import express from 'express'
 import jwtAuthen from '../middlewares/jwtAuthen.js'
-import vocabularyController from '../controllers/vocabularyController.js'
+import {
+  addVocabulary,
+  deleteVocabulary,
+  getAllVocabularyByIdUser,
+  getCountOfVocabularyByUser,
+  getRandomVocabularyByIdUser,
+  updateNumberTimes,
+  updateVocabulary,
+} from '../controllers/vocabularyController.js'
 
 const route = express.Router()
 
@@ -32,7 +40,7 @@ const route = express.Router()
  *             schema:
  *               $ref: '#/components/schemas/ErrorMessage'
  */
-route.get('/countion/:id', vocabularyController.getCountOfVocabularyByUser)
+route.get('/countion/:id', getCountOfVocabularyByUser)
 
 /**
  * @swagger
@@ -62,7 +70,7 @@ route.get('/countion/:id', vocabularyController.getCountOfVocabularyByUser)
  *             schema:
  *               $ref: '#/components/schemas/ErrorMessage'
  */
-route.get('/:id', vocabularyController.getAllVocabularyByIdUser)
+route.get('/:id', getAllVocabularyByIdUser)
 
 /**
  * @swagger
@@ -92,7 +100,7 @@ route.get('/:id', vocabularyController.getAllVocabularyByIdUser)
  *             schema:
  *               $ref: '#/components/schemas/ErrorMessage'
  */
-route.get('/random/:id', vocabularyController.getRandomVocabularyByIdUser)
+route.get('/random/:id', getRandomVocabularyByIdUser)
 
 /**
  * @swagger
@@ -121,7 +129,7 @@ route.get('/random/:id', vocabularyController.getRandomVocabularyByIdUser)
  *             schema:
  *               $ref: '#/components/schemas/ErrorMessage'
  */
-route.post('', jwtAuthen.authenticateToken, vocabularyController.addVocabulary)
+route.post('', jwtAuthen.authenticateToken, addVocabulary)
 
 /**
  * @swagger
@@ -150,11 +158,7 @@ route.post('', jwtAuthen.authenticateToken, vocabularyController.addVocabulary)
  *             schema:
  *               $ref: '#/components/schemas/ErrorMessage'
  */
-route.put(
-  '',
-  jwtAuthen.authenticateToken,
-  vocabularyController.updateVocabulary,
-)
+route.put('', jwtAuthen.authenticateToken, updateVocabulary)
 
 /**
  * @swagger
@@ -183,11 +187,7 @@ route.put(
  *             schema:
  *               $ref: '#/components/schemas/ErrorMessage'
  */
-route.put(
-  '/times',
-  jwtAuthen.authenticateToken,
-  vocabularyController.updateNumberTimes,
-)
+route.put('/times', jwtAuthen.authenticateToken, updateNumberTimes)
 
 /**
  * @swagger
@@ -217,10 +217,6 @@ route.put(
  *             schema:
  *               $ref: '#/components/schemas/ErrorMessage'
  */
-route.delete(
-  '/:id',
-  jwtAuthen.authenticateToken,
-  vocabularyController.deleteVocabulary,
-)
+route.delete('/:id', jwtAuthen.authenticateToken, deleteVocabulary)
 
 export default route
