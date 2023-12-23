@@ -66,7 +66,7 @@
  *     UsersArray:
  *       type: array
  *       items:
- *         $ref: '#\/components\/schemas\/User'
+ *         $ref: '#/components/schemas/User'
  *     ErrorMessage:
  *       type: object
  *       properties:
@@ -152,7 +152,7 @@
  *     VocabularyArray:
  *       type: array
  *       items:
- *         $ref: '#\/components\/schemas\/Vocabulary'
+ *         $ref: '#/components/schemas/Vocabulary'
  * security:
  *   - bearerAuth: []
  */
