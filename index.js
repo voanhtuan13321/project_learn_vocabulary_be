@@ -10,6 +10,8 @@ import userRouters from './src/routes/userRoutes.js'
 import vocabularyRoutes from './src/routes/vocabularyRoutes.js'
 import swaggerSpec from './src/configs/swaggerSpec.js'
 const app = express()
+const CSS_URL =
+  'https://cdnjs.cloudflare.com/ajax/libs/swagger-ui/4.1.0/swagger-ui.min.css'
 
 dotenv.config() // Set up Global configuration access
 connectDB.connect() // connect to database
@@ -24,6 +26,10 @@ app.use(express.urlencoded({ extended: true }))
 app.use(morgan('dev'))
 app.use(cors())
 app.get('/', (req, res) => res.json({ message: '/' }))
-app.use('/api/docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec))
+app.use(
+  '/api/docs',
+  swaggerUi.serve,
+  swaggerUi.setup(swaggerSpec, { customCssUrl: CSS_URL }),
+)
 app.use('/api/v1/users', userRouters)
 app.use('/api/v1/vocabularies', vocabularyRoutes)
