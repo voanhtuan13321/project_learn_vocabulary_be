@@ -50,7 +50,7 @@ export const addVocabulary = (req, res) => {
   }
 
   // check already word
-  Vocabulary.find({ word: data.word })
+  Vocabulary.find({ word: data.word, type: data.type })
     .countDocuments()
     .then(count => {
       if (count > 0) {
