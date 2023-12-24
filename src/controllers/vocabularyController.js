@@ -42,20 +42,22 @@ export const addVocabulary = (req, res) => {
   //   type: 'v',
   //   meaning: 'viết',
   // }
+  const data = {
+    ...req.data,
+    status: true,
+    numberOfCorrectTimes: 0,
+    numberOfIncorrectTimes: 0,
+  }
+
   // check already word
-  Vocabulary.find({ word })
+  Vocabulary.find({ word: data.word })
     .countDocuments()
     .then(count => {
       if (count > 0) {
         res.json(null)
       }
 
-      const newVocabulary = new Vocabulary({
-        ...req.body,
-        status: true,
-        numberOfCorrectTimes: 0,
-        numberOfIncorrectTimes: 0,
-      })
+      const newVocabulary = new Vocabulary(data)
       newVocabulary
         .save()
         .then(result => res.json(result))
