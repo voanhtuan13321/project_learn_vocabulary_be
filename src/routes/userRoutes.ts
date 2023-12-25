@@ -1,5 +1,5 @@
-import express from 'express'
-import jwtAuthen from '../middlewares/jwtAuthen.js'
+import express, { Router } from 'express'
+import jwtAuthen from '../middlewares/jwtAuthen'
 import {
   addUser,
   deleteUser,
@@ -7,17 +7,16 @@ import {
   hasUsername,
   login,
   updateUser,
-} from '../controllers/userController.js'
+} from '../controllers/userController'
 
-const route = express.Router()
+const route: Router = express.Router()
 
 /**
  * @swagger
- * /api/v1/users/check-exist/{username}:
+ * '/api/v1/users/check-exist/{username}':
  *   post:
  *     summary: check exist username
  *     tags: [Users]
- *     server: /api/v1/users/check-exist
  *     parameters:
  *       - name: username
  *         in: path
@@ -43,11 +42,10 @@ route.get('/check-exist/:username', hasUsername)
 
 /**
  * @swagger
- * /api/v1/users/login:
+ * '/api/v1/users/login':
  *   post:
  *     summary: login
  *     tags: [Users]
- *     server: /api/v1/users/login
  *     requestBody:
  *       required: true
  *       content:
@@ -72,11 +70,10 @@ route.post('/login', login)
 
 /**
  * @swagger
- * /api/v1/users/register:
+ * '/api/v1/users/register':
  *   post:
  *     summary: Register a user
  *     tags: [Users]
- *     server: /api/v1/users/register
  *     requestBody:
  *       required: true
  *       content:
@@ -105,7 +102,6 @@ route.post('/register', addUser)
  *   get:
  *     summary: Get all users
  *     tags: [Users]
- *     server: /api/v1/users
  *     responses:
  *       200:
  *         description: List all users
@@ -128,7 +124,6 @@ route.get('', getAllUsers)
  *   put:
  *     summary: Update user
  *     tags: [Users]
- *     server: /api/v1/users
  *     requestBody:
  *       required: true
  *       content:
@@ -153,11 +148,10 @@ route.put('', jwtAuthen.authenticateToken, updateUser)
 
 /**
  * @swagger
- * /api/v1/users/{id}:
+ * '/api/v1/users/{id}':
  *   delete:
  *     summary: Delete user
  *     tags: [Users]
- *     server: /api/v1/users
  *     parameters:
  *       - name: id
  *         in: path

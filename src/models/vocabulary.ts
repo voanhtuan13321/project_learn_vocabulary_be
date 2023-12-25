@@ -1,6 +1,6 @@
-import mongoose from 'mongoose'
+import mongoose, { Schema } from 'mongoose'
 
-const vocabularySchema = new mongoose.Schema(
+const vocabularySchema: Schema = new mongoose.Schema(
   {
     userId: String,
     word: String,
@@ -14,5 +14,4 @@ const vocabularySchema = new mongoose.Schema(
 )
 
 const Vocabulary = mongoose.model('Vocabulary', vocabularySchema)
-
 export default Vocabulary

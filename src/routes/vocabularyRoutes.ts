@@ -1,5 +1,5 @@
-import express from 'express'
-import jwtAuthen from '../middlewares/jwtAuthen.js'
+import express, { Router } from 'express'
+import jwtAuthen from '../middlewares/jwtAuthen'
 import {
   addVocabulary,
   deleteVocabulary,
@@ -8,17 +8,16 @@ import {
   getRandomVocabularyByIdUser,
   updateNumberTimes,
   updateVocabulary,
-} from '../controllers/vocabularyController.js'
+} from '../controllers/vocabularyController'
 
-const route = express.Router()
+const route: Router = express.Router()
 
 /**
  * @swagger
- * /api/v1/vocabularies/countion/{id}:
+ * '/api/v1/vocabularies/countion/{id}':
  *   get:
  *     summary: count vocabulary of user
  *     tags: [Vocabulary]
- *     server: /api/v1/vocabularies/countion
  *     parameters:
  *       - name: id
  *         in: path
@@ -44,11 +43,10 @@ route.get('/countion/:id', getCountOfVocabularyByUser)
 
 /**
  * @swagger
- * /api/v1/vocabularies/{id}:
+ * '/api/v1/vocabularies/{id}':
  *   get:
  *     summary: get all vocabularies of a user
  *     tags: [Vocabulary]
- *     server: /api/v1/vocabularies
  *     parameters:
  *       - name: id
  *         in: path
@@ -74,11 +72,10 @@ route.get('/:id', getAllVocabularyByIdUser)
 
 /**
  * @swagger
- * /api/v1/vocabularies/random/{id}:
+ * '/api/v1/vocabularies/random/{id}':
  *   get:
  *     summary: get random vocabularies of a user
  *     tags: [Vocabulary]
- *     server: /api/v1/vocabularies/random
  *     parameters:
  *       - name: id
  *         in: path
@@ -108,7 +105,6 @@ route.get('/random/:id', getRandomVocabularyByIdUser)
  *   post:
  *     summary: add new vocabulary
  *     tags: [Vocabulary]
- *     server: /api/v1/vocabularies
  *     requestBody:
  *       required: true
  *       content:
@@ -137,7 +133,6 @@ route.post('', jwtAuthen.authenticateToken, addVocabulary)
  *   put:
  *     summary: update vocabulary
  *     tags: [Vocabulary]
- *     server: /api/v1/vocabularies
  *     requestBody:
  *       required: true
  *       content:
@@ -162,11 +157,10 @@ route.put('', jwtAuthen.authenticateToken, updateVocabulary)
 
 /**
  * @swagger
- * /api/v1/vocabularies/times:
+ * '/api/v1/vocabularies/times':
  *   put:
  *     summary: update vocabulary
  *     tags: [Vocabulary]
- *     server: /api/v1/vocabularies/times
  *     requestBody:
  *       required: true
  *       content:
@@ -191,11 +185,10 @@ route.put('/times', jwtAuthen.authenticateToken, updateNumberTimes)
 
 /**
  * @swagger
- * /api/v1/vocabularies/{id}:
+ * '/api/v1/vocabularies/{id}':
  *   delete:
  *     summary: Delete Vocabulary
  *     tags: [Vocabulary]
- *     server: /api/v1/vocabularies
  *     parameters:
  *       - name: id
  *         in: path
